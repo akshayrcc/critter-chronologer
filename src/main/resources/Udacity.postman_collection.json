@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3da4eeec-6238-471f-ab55-ce0d742fa76e",
+		"_postman_id": "a7c0c10f-188f-4707-b852-7c9e4622d1f7",
 		"name": "Udacity",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -43,6 +43,9 @@
 		},
 		{
 			"name": "Save Pet",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
 			"request": {
 				"method": "POST",
 				"header": [
@@ -55,7 +58,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"type\": \"CAT\",\r\n  \"name\": \"Kilo\",\r\n  \"birthDate\": \"2019-12-16T04:43:57.995Z\",\r\n  \"notes\": \"HI KILO\"\r\n}",
+					"raw": "{\r\n  \"type\": \"CAT\",\r\n  \"name\": \"Kilo\",\r\n  \"birthDate\": \"2019-12-16T04:43:57.995Z\",\r\n  \"notes\": \"HI KILO\",\r\n  \"ownerId\" : 1\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -63,15 +66,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/pet/1",
+					"raw": "http://localhost:8082/pet",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8082",
 					"path": [
-						"pet",
-						"1"
+						"pet"
 					]
 				}
 			},
@@ -114,7 +116,7 @@
 			"response": []
 		},
 		{
-			"name": "Add Employee Schedule",
+			"name": "Add Employee Schedule/Availability",
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -127,7 +129,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "[\"MONDAY\", \"TUESDAY\", \"FRIDAY\"]",
+					"raw": "[\"MONDAY\"]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -135,7 +137,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/user/employee/1",
+					"raw": "http://localhost:8082/user/employee/6",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -144,7 +146,7 @@
 					"path": [
 						"user",
 						"employee",
-						"1"
+						"6"
 					]
 				}
 			},
@@ -167,7 +169,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"date\": \"2019-12-17\",\n\t\"skills\": [\"PETTING\", \"FEEDING\"]\n}",
+					"raw": "{\n\t\"date\": \"2021-07-20\",\n\t\"skills\": [\"PETTING\", \"FEEDING\",\"WALKING\"]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -191,20 +193,13 @@
 			"response": []
 		},
 		{
-			"name": "Create Schedule",
+			"name": "Create Schedules",
 			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
+				"method": "POST",
+				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\"MONDAY\", \"TUESDAY\", \"FRIDAY\"]",
+					"raw": "{\r\n    \"employeeIds\" : [6],\r\n    \"petIds\" : [7],\r\n    \"date\" : \"2020-07-21T04:43:57.995Z\",\r\n    \"activities\" : [\"PETTING\"]\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -212,16 +207,33 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/user/employee/1",
+					"raw": "http://localhost:8082/schedule",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8082",
 					"path": [
-						"user",
-						"employee",
-						"1"
+						"schedule"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find All schdules",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/schedule",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"schedule"
 					]
 				}
 			},
@@ -252,7 +264,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/schedule/pet/1",
+					"raw": "http://localhost:8082/schedule/pet/7",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -261,7 +273,7 @@
 					"path": [
 						"schedule",
 						"pet",
-						"1"
+						"7"
 					]
 				}
 			},
@@ -284,7 +296,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "[\"MONDAY\", \"TUESDAY\", \"FRIDAY\"]",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -292,7 +304,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/schedule/employee/2",
+					"raw": "http://localhost:8082/schedule/employee/6",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -301,14 +313,14 @@
 					"path": [
 						"schedule",
 						"employee",
-						"2"
+						"6"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Find Schedule By Owner",
+			"name": "Find Schedule By Owner/Customer",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -324,7 +336,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "[\"MONDAY\", \"TUESDAY\", \"FRIDAY\"]",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -332,7 +344,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/schedule/employee/2",
+					"raw": "http://localhost:8082/schedule/customer/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -340,8 +352,8 @@
 					"port": "8082",
 					"path": [
 						"schedule",
-						"employee",
-						"2"
+						"customer",
+						"1"
 					]
 				}
 			},
@@ -411,7 +423,26 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/user/customer",
+					"raw": "http://localhost:8082/pet",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Employees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/user/employee",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -419,7 +450,7 @@
 					"port": "8082",
 					"path": [
 						"user",
-						"customer"
+						"employee"
 					]
 				}
 			},
@@ -490,7 +521,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/user/customer/pet/1",
+					"raw": "http://localhost:8082/user/customer/pet/7",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -500,12 +531,11 @@
 						"user",
 						"customer",
 						"pet",
-						"1"
+						"7"
 					]
 				}
 			},
 			"response": []
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }

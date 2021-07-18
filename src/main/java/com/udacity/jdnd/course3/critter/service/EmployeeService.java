@@ -46,4 +46,11 @@ public class EmployeeService {
         employee.setDaysAvailable(days);
         employeeRepository.save(employee);
     }
+
+    /* Get All Available Employees */
+    public List<Employee> getAllEmployees () {
+        List<Employee> employees = employeeRepository.findAll();
+        return employees;
+    }
+
 }
